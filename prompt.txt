@@ -1,0 +1,8 @@
+here are the disign preview of full page and individual sections 
+
+now create a react landing page that full copy of this design and full replicate of the page
+
+on template-4 create this. and add proper animation, transition effect , motion effect and every interaction should be responsive and scroll driven animation and full in and out 
+
+
+full emersive 

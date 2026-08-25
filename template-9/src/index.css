@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background: #192b1a;
+    color: #e4f2df;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Organic Mossy Field Background Pattern */
+.moss-pattern-bg {
+  background-color: #172818;
+  background-image: 
+    radial-gradient(at 20% 20%, rgba(68, 115, 68, 0.4) 0px, transparent 50%),
+    radial-gradient(at 80% 80%, rgba(35, 65, 36, 0.5) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(110, 165, 90, 0.2) 0px, transparent 50%);
+}
+
+/* Glassmorphic Outer Canvas Frame */
+.grov-glass-frame {
+  background: rgba(26, 42, 27, 0.88);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(80, 125, 82, 0.4);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35),
+              0 0 1px 1px rgba(255, 255, 255, 0.15) inset;
+}
+
+/* Rotating badge keyframe */
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 14s linear infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #132114;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(154, 217, 114, 0.3);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(154, 217, 114, 0.6);
+}

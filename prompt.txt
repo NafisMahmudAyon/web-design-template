@@ -1,8 +1,106 @@
-here are the disign preview of full page and individual sections 
+# Master Design Replication & UI/UX Engineering Prompt
 
-now create a react landing page that full copy of this design and full replicate of the page
+Here are the design previews of full page and individual sections located in the `design sections/` directory.
 
-on template-4 create this. and add proper animation, transition effect , motion effect and every interaction should be responsive and scroll driven animation and full in and out 
+Now create a React landing page that is a complete, pixel-perfect copy of this design and a full visual and interactive replica of the page.
 
+Act as a World-Class Software Engineer and Top-Level UI/UX Designer.
 
-full emersive 
+---
+
+## 🧠 0. Designer Intent & Static-to-Interactive UI/UX Translation (CRITICAL)
+Static Figma mockups represent living, interactive web experiences frozen in a single frame. Always interpret static design clues into rich, dynamic interactions:
+
+1. **Card Polymorphism & Hover-Driven Active States ("The One Different Card" Rule)**:
+   - **Visual Cue in Mockup**: In a section with 3, 4, 5, or more cards (e.g., service cards, pricing tiers, session items, feature showcases), all cards look similar EXCEPT one card that has a distinct appearance (e.g. white background instead of dark, expanded content drawer, illuminated border, CTA button revealed, or larger scale).
+   - **The Designer's Intent**: Designers cannot animate static artboards. That "different" card is demonstrating the **HOVER / ACTIVE / SELECTED STATE** of the component!
+   - **Mandatory Spacing & Zero-CLS Rule (CRITICAL)**:
+     - **Prevent Section Height Fluctuation**: The outer card container must have a **stable, fixed height** (e.g. `h-[440px] sm:h-[460px] flex flex-col justify-between`).
+     - In resting cards, media fills the space (`h-full`). In active cards, media gracefully flexes while the bottom content drawer slides in (`h-[160px]`).
+     - **The outer card height and parent section height must NEVER jump or fluctuate on hover.** Zero Cumulative Layout Shift (CLS).
+     - Hovering (`onMouseEnter`) or clicking ANY card dynamically activates it, and moving away restores the default state without shifting any surrounding layout.
+
+2. **Carousels & Horizontal Sliders vs. Hover Distinction (Prevent Layout Breaks)**:
+   - **Visual Cue in Mockup**: A horizontal track of cards with carousel navigation buttons (`Prev` / `Next` arrows, pagination dots, or view-more controls), where the first or center card is wide/featured and the rest are compact.
+   - **The Designer's Intent**: That featured card is the **ACTIVE SLIDE IN THE CAROUSEL**, controlled by navigation buttons or slide selection, **NOT A MOUSE HOVER TRIGGER**!
+   - **Mandatory Implementation**:
+     - **NEVER attach width-expanding layout changes (`w-80` to `w-[480px]`) to transient mouse hover in a carousel track.** Doing so shoves adjacent cards, breaks scroll boundaries, and causes chaotic layout reflows.
+     - Advance the active featured slide via **navigation buttons (Prev/Next)** or clicking a card directly.
+     - **Hover on carousel cards must ONLY trigger subtle micro-interactions** (subtle image zoom `group-hover:scale-105`, border highlight, slight translateY `-translate-y-1`) that never mutate card dimensions or track geometry.
+
+3. **Scroll-Driven Progress & Illumination (The "Light-to-Dark / Dark-to-Light" Rule)**:
+   - **Visual Cue in Mockup**: A section where one part is lighter and another part is darker, or where background lighting/elements transition from dimmed to bright.
+   - **The Designer's Intent**: This signifies a **Scroll-Driven Section**. The illumination or darkness is triggered as the user scrolls into and through the section.
+   - **Mandatory Implementation**:
+     - Connect section styling to scroll progress using Framer Motion (`useScroll`, `useTransform`) or sticky viewport triggers.
+     - As the user scrolls, progressively darken/lighten the background, illuminate active cards, or unveil key headlines line by line.
+
+4. **Horizontal Stacks with Fading Edges (Infinite Marquee & Edge-Masked Carousels)**:
+   - **Visual Cue in Mockup**: Similar components (brand logos, metric pills, course cards, user reviews) horizontally stacked where the left and right edges fade to transparent.
+   - **The Designer's Intent**: This is a **Continuous Infinite Marquee** or **Draggable Edge-Faded Carousel**.
+   - **Mandatory Implementation**:
+     - Apply dual gradient masks using CSS:
+       `mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);`
+     - Implement continuous auto-scrolling with pause-on-hover, or smooth mouse-drag and touch-swipe tracking.
+
+5. **Dynamic Accordions & Interactive Selector Hubs**:
+   - If a list or stacked accordion displays one expanded item with description while others show only headers/numbers, hovering or clicking any row must fluidly expand that row and collapse the rest with smooth height animation (`initial={{ height: 0 }} animate={{ height: 'auto' }}`).
+
+---
+
+## 🎨 1. Visual & Aesthetic Excellence (Full Immersive)
+- **Pixel-Accurate Fidelity**: Match every element, typography hierarchy, line heights, letter-spacing, card corner radii, paddings, margins, shadows, and color gradients from the design preview.
+- **Modern Design Tokens**:
+  - Extract exact hex/hsl colors for backgrounds, surfaces, text, borders, and accent highlights.
+  - Implement sleek glassmorphism (`backdrop-blur`, translucent borders `border-white/10`, subtle gradient overlays).
+  - Use high-quality Google Fonts (e.g. Plus Jakarta Sans, Outfit, Inter, Syne) matching the visual aesthetic.
+- **Image Sourcing & Asset Generation**:
+  - **Take Reference from the Design**: Carefully inspect each image in the design preview (`design sections/`) to analyze the subject, framing, camera angle, color grading, and mood.
+  - **Sourcing from Unsplash / Pexels**: Fetch high-resolution, editorial-grade photography from platforms like Unsplash or Pexels that match the subject matter and aesthetic (using direct CDN URLs with optimal crop/quality params, or downloading to `public/assets/`).
+  - **AI Image Generation**: For custom brand visuals, specific character poses, unique 3D elements, product concepts, or graphic backdrops that aren't available on stock platforms, create images using AI (`generate_image`) with rich prompts capturing the exact lighting, style, and atmosphere.
+  - **Zero Placeholders**: Never use generic grey boxes or placeholder dummy images. Every image must be authentic, high quality, and seamlessly integrated with the overall palette.
+- **Realistic Copy & Icons**: Use meaningful, domain-specific copy, authentic tags/badges, and matching icons using `lucide-react`.
+
+---
+
+## ⚡ 2. Animation, Motion & Scroll-Driven Effects
+- **Scroll-Driven Entrance & Exit**:
+  - Use `framer-motion` (`whileInView={{ opacity: 1, y: 0 }}`, `viewport={{ once: true, amount: 0.2 }}`).
+  - Implement staggered reveals on card grids, metrics/stats counters, and feature lists.
+  - Add smooth scroll progress indicators or sticky navigation blur effects on scroll.
+- **Micro-Interactions**:
+  - Hover states on buttons (scale `1.03`, subtle glow, border illumination, arrow slide).
+  - Card interactions: subtle 3D tilt or hover lift (`-translate-y-1.5`), shine highlights, and active border color changes.
+  - Filter / Tab transitions: smooth animated layout transitions (`layoutId` with Framer Motion).
+  - Interactive modals, lightbox previews, and drawers with smooth open/close spring transitions.
+
+---
+
+## 📱 3. Responsive & Adaptive Architecture
+- **Mobile First to Ultra-Wide**:
+  - Fully responsive navigation with smooth mobile hamburger menu drawer.
+  - Adaptive grids (e.g. `grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4`).
+  - Fluid typography and responsive padding (`px-4 sm:px-6 lg:px-8`).
+- **Touch-Friendly**: Touch targets at least 44px, smooth swipe/scroll on mobile.
+
+---
+
+## 🏗️ 4. Clean Component Architecture
+Organize modular, reusable components inside `src/components/`:
+- `Navbar.jsx` / `Header.jsx` (sticky, glass blur, responsive drawer)
+- `HeroSection.jsx` (high-impact title, badges, CTA buttons, visual hero media)
+- `FeaturesSection.jsx` / `ServicesSection.jsx` (staggered cards, icon containers, hover glow)
+- `ShowcaseSection.jsx` / `PortfolioSection.jsx` (interactive grid, lightbox previews)
+- `StatsSection.jsx` / `MetricsSection.jsx` (animated counters, badge pills)
+- `TestimonialsSection.jsx` (cards, avatars, quote styling, star ratings)
+- `PricingSection.jsx` / `FAQSection.jsx` (toggles, accordions with smooth height animations)
+- `FooterSection.jsx` (links, newsletter subscription, branding, social icons)
+- `Modals/` (interactive modals for contact, details, or lightbox)
+
+---
+
+## 🔍 5. Verification & Parity Checklist
+1. Compare live running page with `design sections/Full Page.png`.
+2. Verify all interactive hover, scroll, and click actions work seamlessly.
+3. Check browser console for 0 errors or warnings.
+4. Ensure fast load times and clean layout across viewport sizes.

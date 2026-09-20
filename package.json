@@ -1,0 +1,21 @@
+{
+  "name": "web-design-templates-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Automated Figma to React design replication workspace",
+  "type": "module",
+  "scripts": {
+    "new-template": "node scripts/new-template.js",
+    "fetch-pending": "node scripts/new-template.js --fetch-only",
+    "mark-completed": "node scripts/update-status.js"
+  },
+  "keywords": [
+    "react",
+    "figma",
+    "landing-page",
+    "framer-motion",
+    "tailwind"
+  ],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,14 +1,9 @@
 [
   {
-    "rowNumber": 8,
-    "templateName": "template-18",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/aec0aa4d-c72e-4204-9782-50a63d8d705f",
-    "status": "Completed"
-  },
-  {
     "rowNumber": 9,
     "templateName": "template-19",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/0e2c2c23-d8e5-406d-813d-6c60b49d5fc6"
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/0e2c2c23-d8e5-406d-813d-6c60b49d5fc6",
+    "status": "Completed"
   },
   {
     "rowNumber": 10,

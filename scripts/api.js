@@ -24,7 +24,7 @@ export async function getPendingTemplates() {
     const response = await fetch(WEB_APP_URL, {
       method: 'GET',
       redirect: 'follow',
-      signal: AbortSignal.timeout(8000),
+      signal: AbortSignal.timeout(30000),
       headers: {
         'Accept': 'application/json, text/plain, */*',
       }
@@ -143,7 +143,8 @@ export async function downloadImage(url, destFilePath) {
 
   // 1. Check if server supports Range requests for fast parallel downloading
   try {
-    const headRes = await fetch(url, { method: 'HEAD', signal: AbortSignal.timeout(15000) });
+    const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
+    const headRes = await fetch(url, { method: 'HEAD', headers: { 'User-Agent': userAgent }, signal: AbortSignal.timeout(15000) });
     const contentLength = parseInt(headRes.headers.get('content-length') || '0', 10);
     const acceptRanges = headRes.headers.get('accept-ranges');
 
@@ -158,7 +159,7 @@ export async function downloadImage(url, destFilePath) {
         const end = Math.min(start + chunkSize - 1, contentLength - 1);
         promises.push(
           fetch(url, {
-            headers: { Range: `bytes=${start}-${end}` },
+            headers: { Range: `bytes=${start}-${end}`, 'User-Agent': userAgent },
             signal: AbortSignal.timeout(120000),
           }).then(async (r) => {
             if (!r.ok && r.status !== 206) throw new Error(`Chunk ${i} failed: ${r.status}`);
@@ -179,8 +180,9 @@ export async function downloadImage(url, destFilePath) {
 
   // 2. Fallback to curl.exe
   try {
+    const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
     const { execFileSync } = await import('child_process');
-    execFileSync('curl.exe', ['-L', '-s', '--connect-timeout', '20', '--max-time', '180', '-o', destFilePath, url], { timeout: 190000 });
+    execFileSync('curl.exe', ['-L', '-s', '-A', userAgent, '--connect-timeout', '20', '--max-time', '180', '-o', destFilePath, url], { timeout: 190000 });
     if (fs.existsSync(destFilePath) && fs.statSync(destFilePath).size > 0) {
       const stats = fs.statSync(destFilePath);
       console.log(`   Saved to: ${destFilePath} (${(stats.size / 1024).toFixed(1)} KB)`);
@@ -191,7 +193,8 @@ export async function downloadImage(url, destFilePath) {
   }
 
   // 3. Fallback to standard fetch
-  const response = await fetch(url, { signal: AbortSignal.timeout(180000) });
+  const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
+  const response = await fetch(url, { headers: { 'User-Agent': userAgent }, signal: AbortSignal.timeout(180000) });
   if (!response.ok) {
     throw new Error(`Failed to download image: ${response.status} ${response.statusText}`);
   }

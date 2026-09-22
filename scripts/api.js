@@ -24,6 +24,7 @@ export async function getPendingTemplates() {
     const response = await fetch(WEB_APP_URL, {
       method: 'GET',
       redirect: 'follow',
+      signal: AbortSignal.timeout(8000),
       headers: {
         'Accept': 'application/json, text/plain, */*',
       }

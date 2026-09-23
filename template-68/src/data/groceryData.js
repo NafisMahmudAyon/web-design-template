@@ -1,0 +1,243 @@
+export const CATEGORIES = [
+  { id: 'veg', name: 'Vegetables', count: '52 Products', icon: 'Salad', bg: '#eef8f2', iconColor: '#0c6b3e' },
+  { id: 'fruits', name: 'Fresh Fruits', count: '48 Products', icon: 'Apple', bg: '#fef3e6', iconColor: '#ea580c' },
+  { id: 'dairy', name: 'Milk & Eggs', count: '12 Products', icon: 'Milk', bg: '#f0f7ff', iconColor: '#0284c7' },
+  { id: 'bakery', name: 'Bakery', count: '62 Products', icon: 'Croissant', bg: '#fdf6ea', iconColor: '#d97706' },
+  { id: 'household', name: 'House Hold', count: '25 Products', icon: 'Sparkles', bg: '#f5f3ff', iconColor: '#7c3aed' },
+  { id: 'dryfruits', name: 'Dry Fruits', count: '8 Products', icon: 'Nut', bg: '#fbf4ea', iconColor: '#b45309' },
+  { id: 'drinks', name: 'Drinks', count: '20 Products', icon: 'Coffee', bg: '#fff1f2', iconColor: '#e11d48' },
+];
+
+export const FEATURED_PRODUCTS = [
+  {
+    id: 'prod-1',
+    name: 'Fresh Strawberry',
+    weight: '500 g',
+    rating: 4.8,
+    price: 8.0,
+    oldPrice: 10.0,
+    discount: '20% off',
+    category: 'Fruits',
+    image: 'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=500&q=80',
+  },
+  {
+    id: 'prod-2',
+    name: 'Fresh Cauliflower',
+    weight: '250 g',
+    rating: 4.9,
+    price: 12.0,
+    oldPrice: 15.0,
+    discount: '20% off',
+    category: 'Vegetables',
+    image: 'https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?auto=format&fit=crop&w=500&q=80',
+  },
+  {
+    id: 'prod-3',
+    name: 'Fresh Yellow Lemon',
+    weight: '1 Kg',
+    rating: 4.8,
+    price: 8.0,
+    oldPrice: 10.0,
+    discount: '20% off',
+    category: 'Fruits',
+    image: 'https://images.unsplash.com/photo-1534531173927-aeb928d54385?auto=format&fit=crop&w=500&q=80',
+  },
+  {
+    id: 'prod-4',
+    name: 'Fresh Organic Broccoli',
+    weight: '500 g',
+    rating: 4.9,
+    price: 12.0,
+    oldPrice: 16.0,
+    discount: '25% off',
+    category: 'Vegetables',
+    image: 'https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&w=500&q=80',
+  },
+];
+
+export const DEALS_OF_THE_DAY = [
+  {
+    id: 'deal-1',
+    name: 'Laundry Detergent',
+    category: 'Laundry Supplies',
+    price: 75.0,
+    oldPrice: 100.0,
+    discount: '25% off',
+    rating: 4.9,
+    description: 'Eco-friendly hypoallergenic liquid laundry detergent for sensitive skin.',
+    image: 'https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=500&q=80',
+  },
+  {
+    id: 'deal-2',
+    name: 'Body Wash',
+    category: 'Personal Care',
+    price: 25.0,
+    oldPrice: 50.0,
+    discount: '50% off',
+    rating: 5.0,
+    description: 'Nourishing organic botanical body wash with aloe vera and eucalyptus oils.',
+    image: 'https://images.unsplash.com/photo-1608248597359-53e7d5885c3b?auto=format&fit=crop&w=500&q=80',
+  },
+];
+
+export const BEST_SELLERS = [
+  {
+    id: 'best-1',
+    name: 'Chocolate Ball',
+    weight: '500 g',
+    rating: 4.9,
+    price: 25.0,
+    oldPrice: 50.0,
+    discount: '50% off',
+    category: 'Snacks & Sweets',
+    image: 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=500&q=80',
+  },
+  {
+    id: 'best-2',
+    name: 'Brown Bread',
+    weight: '200 g',
+    rating: 5.0,
+    price: 5.0,
+    oldPrice: 10.0,
+    discount: '50% off',
+    category: 'Bakery',
+    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80',
+  },
+  {
+    id: 'best-3',
+    name: 'Almond Milk',
+    weight: '500 ml',
+    rating: 4.9,
+    price: 8.0,
+    oldPrice: 10.0,
+    discount: '20% off',
+    category: 'Dairy Products',
+    image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=500&q=80',
+  },
+  {
+    id: 'best-4',
+    name: 'Coconut Oil',
+    weight: '200 g',
+    rating: 4.8,
+    price: 20.0,
+    oldPrice: 26.0,
+    discount: '20% off',
+    category: 'Oils',
+    image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80',
+  },
+];
+
+export const TESTIMONIALS = [
+  {
+    id: 1,
+    name: 'Bessie Cooper',
+    role: 'Housewife',
+    rating: 5.0,
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80',
+    quote: "I've tried several grocery delivery services, and this one is by far the best. The website is user-friendly, the selection is vast, and the customer service is outstanding. Highly recommend!",
+  },
+  {
+    id: 2,
+    name: 'Robert Fox',
+    role: 'Head Chef',
+    rating: 5.0,
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
+    quote: "The farm fresh vegetables arrive as if freshly picked from the soil that morning. Our restaurant relies heavily on their prompt scheduled deliveries.",
+  },
+  {
+    id: 3,
+    name: 'Kathryn Murphy',
+    role: 'Certified Nutritionist',
+    rating: 4.9,
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80',
+    quote: "Remarkable organic quality! Clean labels, verified pesticide-free fruits, and reliable cooling containers ensure the nutritional integrity of the produce.",
+  },
+  {
+    id: 4,
+    name: 'Wade Warren',
+    role: 'Culinary Blogger',
+    rating: 5.0,
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
+    quote: "Their summer discounts and weekly grocery specials have cut my family's monthly grocery expenses by almost 30% while improving the freshness.",
+  },
+  {
+    id: 5,
+    name: 'Courtney Henry',
+    role: 'Wellness Coach',
+    rating: 5.0,
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
+    quote: "The seamless user experience and fast contactless delivery make eating healthy completely effortless. It has truly transformed my meal prepping routine.",
+  },
+];
+
+export const BLOGS = [
+  {
+    id: 1,
+    tag: 'Shopping Tips',
+    tagColor: 'bg-amber-100 text-amber-800',
+    author: 'Jenny Alexander',
+    date: '14 August 2024',
+    title: 'How to Create a Grocery Shopping List: Stay Organized...',
+    image: 'https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 2,
+    tag: 'Seasonal Guides',
+    tagColor: 'bg-emerald-100 text-emerald-800',
+    author: 'Jenny Alexander',
+    date: '13 August 2024',
+    title: 'Summer Produce Guide: Fresh Fruits and Vegetables to Enjoy',
+    image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 3,
+    tag: 'Healthy Eating',
+    tagColor: 'bg-rose-100 text-rose-800',
+    author: 'Jenny Alexander',
+    date: '12 August 2024',
+    title: 'Top 10 Superfoods for a Balanced Diet: Boost Your Health...',
+    image: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=600&q=80',
+  },
+];
+
+export const FAQS = [
+  {
+    id: 1,
+    question: 'Are the products fresh and of high quality?',
+    answer: 'Yes! We partner directly with verified regional farms and local organic growers. All vegetables and fruits are harvested daily and inspected rigorously before packing.',
+  },
+  {
+    id: 2,
+    question: 'What are your delivery hours?',
+    answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    isDefaultOpen: true,
+  },
+  {
+    id: 3,
+    question: 'What payment methods do you accept?',
+    answer: 'We accept all major credit and debit cards (Visa, MasterCard, American Express), Apple Pay, Google Pay, PayPal, and Cash on Delivery for eligible zip codes.',
+  },
+  {
+    id: 4,
+    question: 'Do you offer any discounts or promotions?',
+    answer: 'Yes! First-time customers enjoy a flat 25% discount with code WELCOME25. We also run weekly grocery specials, seasonal discounts, and free shipping on orders over $50.',
+  },
+  {
+    id: 5,
+    question: 'How can I provide feedback about my experience?',
+    answer: 'You can easily rate your order and driver in the Grocery app or reach our 24/7 dedicated customer care team through live chat, email, or our direct phone line.',
+  },
+  {
+    id: 6,
+    question: 'Do you offer bulk ordering for events or businesses?',
+    answer: 'Yes, our Grocery Wholesale program provides custom volume pricing, dedicated account managers, and scheduled multi-address deliveries for restaurants, caterers, and corporate pantries.',
+  },
+];
+
+export const GALLERY_IMAGES = [
+  'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&q=80',
+  'https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=400&q=80',
+  'https://images.unsplash.com/photo-1588964895597-cfccd6e2dbf9?auto=format&fit=crop&w=400&q=80',
+  'https://images.unsplash.com/photo-1608686207856-001b95cf60ca?auto=format&fit=crop&w=400&q=80',
+  'https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?auto=format&fit=crop&w=400&q=80',
+];

@@ -1,0 +1,9 @@
+node_modules
+.git
+.agents
+dist
+*.log
+.DS_Store
+playwright-report
+test-results
+scratch

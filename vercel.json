@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "buildCommand": "node scripts/build-all.js",
+  "outputDirectory": "dist",
+  "cleanUrls": false,
+  "trailingSlash": true,
+  "rewrites": [
+    { "source": "/template-:num/(.*)", "destination": "/template-:num/$1" },
+    { "source": "/template-:num", "destination": "/template-:num/index.html" }
+  ]
+}

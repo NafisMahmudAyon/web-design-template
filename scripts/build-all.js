@@ -38,10 +38,13 @@ async function buildTemplate(dirName) {
   const targetDist = path.join(DIST_DIR, dirName);
   const localDist = path.join(templateRoot, 'dist');
   const base = `/${dirName}/`;
+  const previousCwd = process.cwd();
 
   console.log(`[Build Pipeline] 🚀 Building ${dirName}...`);
 
   try {
+    process.chdir(templateRoot);
+
     if (fs.existsSync(localDist)) {
       try { fs.rmSync(localDist, { recursive: true, force: true, maxRetries: 10, retryDelay: 100 }); } catch (e) {}
     }
@@ -67,6 +70,8 @@ async function buildTemplate(dirName) {
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
     console.warn(`[Build Pipeline] ⚠️ ${dirName} build failed (${err.message}) in ${elapsed}s`);
     return { dirName, success: false, elapsed, error: err.message };
+  } finally {
+    process.chdir(previousCwd);
   }
 }
 
